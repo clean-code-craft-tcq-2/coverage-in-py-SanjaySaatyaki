@@ -41,5 +41,13 @@ class TypewiseTest(unittest.TestCase):
   def test_check_and_alert_low(self):
     self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE_COOLING'},-40)==f'{0xfeed}, TOO_LOW')
   
+  def test_is_valid_input_true(self):
+    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING'},)==True)
+  
+  def test_is_valid_input_true(self):
+    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE1_COOLING'},)==False)
+  
+  def test_check_and_alert_invalid_input(self):
+    self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE1_COOLING'},-40)=='INVALID_INPUT')
 if __name__ == '__main__':
   unittest.main()

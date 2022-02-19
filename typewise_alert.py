@@ -42,8 +42,15 @@ def classify_temperature_breach(coolingType, temperatureInC):
 
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
+  if is_valid_input(alertTarget,batteryChar) is False:
+    return "INVALID_INPUT"
   breachType = classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
   if breachType is not breach_values[1]:
     return alert_types[alertTarget](breachType)
   else:
     return breachType
+
+def is_valid_input(alertTarget,batteryChar):
+  if alertTarget in list(alert_types.keys()) and batteryChar['coolingType'] in list(cooling_types.keys()):
+    return True
+  return False
