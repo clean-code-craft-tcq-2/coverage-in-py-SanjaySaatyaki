@@ -50,7 +50,14 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
   else:
     return breachType
 
-def is_valid_input(alertTarget,batteryChar):
-  if alertTarget in list(alert_types.keys()) and batteryChar['coolingType'] in list(cooling_types.keys()):
+def is_available_in_keys(param,param_belongs_to):
+  if param in param_belongs_to.keys():
     return True
   return False
+
+def is_valid_input(alertTarget,batteryChar):
+  param_check_list=[is_available_in_keys(alertTarget,alert_types),
+                    is_available_in_keys(batteryChar['coolingType'],cooling_types)]
+  if False in param_check_list:
+    return False
+  return True

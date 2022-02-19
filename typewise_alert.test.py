@@ -48,5 +48,12 @@ class TypewiseTest(unittest.TestCase):
   
   def test_check_and_alert_invalid_input(self):
     self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE_COOLING_1'},-40)=='INVALID_INPUT')
+
+  def test_is_available_in_keys_true(self):
+    self.assertTrue(typewise_alert.is_available_in_keys('EMAIL',typewise_alert.alert_types)==True)
+  
+  def test_is_available_in_keys_false(self):
+    self.assertTrue(typewise_alert.is_available_in_keys('PASSIVE_COOLING_1',typewise_alert.cooling_types)==False)
+
 if __name__ == '__main__':
   unittest.main()
