@@ -3,8 +3,7 @@ import typewise_alert
 
 
 class TypewiseTest(unittest.TestCase):
-  header = 0xfeed
-
+  
   def test_infers_breach_as_per_limits(self):
     self.assertTrue(typewise_alert.infer_breach(20, 50, 100) == 'TOO_LOW')
   
@@ -42,12 +41,12 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE_COOLING'},-40)==f'{0xfeed}, TOO_LOW')
   
   def test_is_valid_input_true(self):
-    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING'},)==True)
+    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING'})==True)
   
   def test_is_valid_input_true(self):
-    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE1_COOLING'},)==False)
+    self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING_1'})==False)
   
   def test_check_and_alert_invalid_input(self):
-    self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE1_COOLING'},-40)=='INVALID_INPUT')
+    self.assertTrue(typewise_alert.check_and_alert('CONTROLLER',{'coolingType':'PASSIVE_COOLING_1'},-40)=='INVALID_INPUT')
 if __name__ == '__main__':
   unittest.main()
