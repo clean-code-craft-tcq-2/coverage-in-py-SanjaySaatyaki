@@ -43,7 +43,7 @@ class TypewiseTest(unittest.TestCase):
   def test_is_valid_input_true(self):
     self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING'})==True)
   
-  def test_is_valid_input_true(self):
+  def test_is_valid_input_false(self):
     self.assertTrue(typewise_alert.is_valid_input('EMAIL',{'coolingType':'PASSIVE_COOLING_1'})==False)
   
   def test_check_and_alert_invalid_input(self):
